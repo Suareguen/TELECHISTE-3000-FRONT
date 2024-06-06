@@ -11,6 +11,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoodIcon from "@mui/icons-material/Mood";
+import { Link } from "react-router-dom";
+import './SideBar.css'
 
 export default function SideBar() {
   const [state, setState] = React.useState({
@@ -37,14 +39,14 @@ export default function SideBar() {
     >
       <List>
         {["chistes", "favoritos"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {displayIcons(text)}
-              </ListItemIcon>
-              <ListItemText primary={text.toUpperCase()} />
-            </ListItemButton>
-          </ListItem>
+          <Link to={`/${text}`} key={text} className="link">
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>{displayIcons(text)}</ListItemIcon>
+                <ListItemText primary={text.toUpperCase()} />
+              </ListItemButton>
+            </ListItem>
+        </Link>
         ))}
       </List>
     </Box>
@@ -55,13 +57,11 @@ export default function SideBar() {
       return <MoodIcon />;
     } else if (text === "favoritos") {
       return <FavoriteIcon />;
-    }
-    else {
-        return <MailIcon />
+    } else {
+      return <MailIcon />;
     }
   };
 
-  
   return (
     <div>
       {["left"].map((anchor) => (
