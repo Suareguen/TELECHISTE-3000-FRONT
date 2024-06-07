@@ -6,6 +6,8 @@ import Jokes from "../pages/Jokes/Jokes"
 import SignUp from "../pages/SignUp/SignUp"
 import Login from "../pages/Login/Login"
 import Profile from "../pages/Profile/Profile"
+import Favorites from "../pages/Favorites/Favorites"
+
 
 
 const router = createBrowserRouter([
@@ -58,6 +60,19 @@ const router = createBrowserRouter([
                     }
                 },
                 element: <Profile />
+            },
+            {
+                path: '/favoritos',
+                loader: () => {
+                    if(!localStorage.getItem('token')) {
+                        alert('inicia sesion')
+                        return redirect('/login')
+                    }
+                    else {
+                        return null
+                    }
+                },
+                element: <Favorites />
             }
         ]
     }

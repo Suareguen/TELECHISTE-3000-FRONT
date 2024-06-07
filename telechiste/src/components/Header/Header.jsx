@@ -15,6 +15,11 @@ export default function Header() {
     localStorage.clear()
     navigate('/login')
   }
+
+  const handleProfile = () => {
+    navigate('/profile')
+  }
+  
   return (
     <Box>
       <AppBar position="static">
@@ -26,7 +31,10 @@ export default function Header() {
             </Typography>
           </Link>
           {localStorage.getItem("token") ? (
+            <Box>
             <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleProfile}>Profile</button>
+            </Box>
           ) : (
             <Box>
               <Link to="/login">
