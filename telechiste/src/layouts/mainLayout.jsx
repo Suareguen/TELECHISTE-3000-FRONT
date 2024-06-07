@@ -1,12 +1,15 @@
 import { Outlet } from "react-router-dom"
+import Header from "../components/Header/Header"
+import Footer from "../components/Footer/Footer"
+import { Box } from "@mui/material"
 
 function Root() {
   return (
-    <div>
-        <h1>Header</h1>
+    <Box sx={{height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <Header />
         <Outlet />
-        <h1>Footer</h1>
-    </div>
+        <Footer />
+    </Box>
   )
 }
 
