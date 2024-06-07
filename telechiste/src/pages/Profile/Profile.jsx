@@ -1,0 +1,30 @@
+import { getUserProfile } from "../../services/userService"
+import { useState, useEffect } from "react"
+import ProfileCard from "../../components/ProfileCard/ProfileCard"
+import { CircularProgress } from "@mui/material"
+import AdminPanel from "../../components/AdminPanel/AdminPanle"
+function Profile() {
+  const [userProfile, setUserProfile] = useState(null)
+
+  useEffect(() => {
+    const getUserDataProfile = async () => {
+      const result = await getUserProfile()
+      setUserProfile(result)
+    }
+
+    getUserDataProfile()
+  }, [])
+
+  return (
+    <div>
+      {
+        userProfile !== null ? <ProfileCard userInfo={userProfile}/> : <CircularProgress />
+      }
+      {
+        userProfile?.role === 'admin' ? <AdminPanel /> : 'Loading' 
+      }
+    </div>
+  )
+}
+
+export default Profile
